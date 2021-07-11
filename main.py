@@ -50,6 +50,14 @@ huddleImg = pygame.image.load('hurdle.png')
 # starting the mixer in order to play music files in pygame
 pygame.mixer.init()
 
+
+loadingpageImg = pygame.image.load('startflag.jpg')
+level1Img = pygame.image.load('level1.png')
+level2Img = pygame.image.load('level2.png')
+level3Img = pygame.image.load('level3.png')
+level4Img = pygame.image.load('level4.png')
+level5Img = pygame.image.load('level5.png')
+
 # huddleX = random.randint(30,120)
 # huddleY = random.randint(-80,-50)
 
@@ -261,7 +269,8 @@ def button(x_button, y_button, msg, color1, color2, color3):
             players()
         elif click == (1, 0, 0) and msg == " One ":
             n_of_pl = 1
-            gameloop1(n_of_pl,0.8)
+            speed = 0.8
+            load_page(n_of_pl,speed)
         elif click == (1, 0, 0) and msg == " Two ":
             choose_mode()
         elif click == (1, 0, 0) and msg == "Main Menu ":
@@ -271,13 +280,16 @@ def button(x_button, y_button, msg, color1, color2, color3):
             quit()
         elif click == (1, 0, 0) and msg == " Slow ":
             n_of_pl = 2
-            gameloop1(n_of_pl,0.4)
+            speed = 0.4
+            load_page(n_of_pl,speed)
         elif click == (1, 0, 0) and msg == " Medium ":
             n_of_pl = 2
-            gameloop1(n_of_pl,0.8)
+            speed = 0.8
+            load_page(n_of_pl,speed)
         elif click == (1, 0, 0) and msg == " Fast ":
             n_of_pl = 2
-            gameloop1(n_of_pl,1.8)
+            speed = 1.4
+            load_page(n_of_pl,speed)
         elif click == (1, 0, 0) and msg == "   Pause ":
             paused()
         elif click == (1,0,0) and msg == " Continue ":
@@ -384,6 +396,37 @@ def paused():
         pause = button(300, 550, " Continue ", lime_green, black, green)
         button(700, 550, "Main Menu ", crimsion, black, red)
 
+        pygame.display.update()
+
+def load_page(n_of_pl, speed):
+    pause = False
+    i=0
+    while not pause:
+        screen.blit(loadingpageImg, (0, 0))
+        message("Loading .... ", 785, 100, white, False, False, "small")
+
+        if (i<200):
+            screen.blit(level1Img, (750, 50))
+            i +=1
+        if (i >= 200):
+            screen.blit(level2Img, (750, 50))
+            i+=1
+        if (i >= 400):
+            screen.blit(level3Img, (750, 49))
+            i+=1
+        if (i >= 600):
+            screen.blit(level4Img, (750, 49))
+            i+=1
+        if (i >= 800):
+            screen.blit(level5Img, (750, 49))
+            i+=1
+        if (i>= 1000):
+            gameloop1(n_of_pl, speed)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pause = True
+                pygame.quit()
+                quit()
 
         pygame.display.update()
 
