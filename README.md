@@ -1,7 +1,7 @@
 # Car-Racing-Game
 
 <p>It is basic Car Racing Game made in Python using Pygame,
-You can play it in any OS .</p>
+You can play it on any OS .</p>
 
 # Dependencies
 * These must be installed in your PC/Laptop
